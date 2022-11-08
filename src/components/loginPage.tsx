@@ -88,23 +88,23 @@ function Login() {
           display: "none",
         };
 
-  let userId: string;
-  let userPassword: string;
+  let userId: string = "";
+  let userPassword: string = "";
 
   function loginCheck() {
-    userId == null ? setPlsInputID(true) : setPlsInputID(false);
-    userPassword == null ? setPlsInputPW(true) : setPlsInputPW(false);
+    userId.length <= 0 ? setPlsInputID(true) : setPlsInputID(false);
+    userPassword.length <= 0 ? setPlsInputPW(true) : setPlsInputPW(false);
 
     userId == userList.id &&
     userPassword == userList.pw &&
-    userId != null &&
-    userPassword != null
+    userId.length != 0 &&
+    userPassword.length != 0
       ? setLogSuc(true)
       : setLogSuc(false);
 
     (userId != userList.id || userPassword != userList.pw) &&
-    userId != null &&
-    userPassword != null
+    userId.length != 0 &&
+    userPassword.length != 0
       ? setDiffAcc(true)
       : setDiffAcc(false);
 
