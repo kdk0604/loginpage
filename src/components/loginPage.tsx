@@ -1,6 +1,7 @@
 import "./loginPage.css";
 
 import React, { useState } from "react";
+// import styled from "styled-components";
 
 // import { showPassword } from "./functions/apis";
 
@@ -9,11 +10,17 @@ import React, { useState } from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 
-import SocialLogin from "./social_login";
-import RegisteAndFindAcc from "./RegisterAndFindAccount";
+import SocialLogin from "./SocialLogin";
+import LoginMenu from "./LoginMenu";
+
+import {
+  WarningIDisNull,
+  WarningPWisNull,
+  AccountNotFound,
+  LoginSuccess,
+} from "./LoginError";
 
 import userList from "../account/accountList";
-// import { opine } from "https://deno.land/x/opine@1.4.0/mod.ts";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -46,7 +53,7 @@ function Login() {
   const [loginSuccess, setLoginSuccess] = useState(false);
 
   // 입력한 정보와 계정의 정보가 다르면 true, 같으면 false
-  const [LoginError, setLoginError] = useState(false);
+  const [LoginNotFound, setLoginNotFound] = useState(false);
 
   const [userId, setUserId] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -65,8 +72,8 @@ function Login() {
     (userId !== userList.id || userPassword !== userList.pw) &&
     userId &&
     userPassword
-      ? setLoginError(true)
-      : setLoginError(false);
+      ? setLoginNotFound(true)
+      : setLoginNotFound(false);
 
     console.log("아이디" + userId);
     console.log("비번" + userPassword);
@@ -80,11 +87,7 @@ function Login() {
           <img id="login-img" src="/logo/logo.jpg" alt="메인 로고" />
 
           {/* 아이디 또는 비밀번호가 틀렸거나, 가입되지 않은 아이디로 로그인을 시도하는 경우 */}
-          {LoginError && (
-            <div id="check-acc">
-              아이디 또는 비밀번호가 틀렸거나, 가입되지 않은 계정입니다
-            </div>
-          )}
+          {LoginNotFound && <AccountNotFound />}
 
           {/* 아이디 입력창 박스 */}
           <div id="id-box">
@@ -109,7 +112,7 @@ function Login() {
           </div>
 
           {/* 아이디를 입력하지 않았을 때 나타나는 경고문 */}
-          {InputIDisNull && <div id="inputId-null">아이디를 입력해주세요</div>}
+          {InputIDisNull && <WarningIDisNull />}
 
           {/* 비밀번호 입력창 박스 */}
           <div id="pw-box">
@@ -144,14 +147,10 @@ function Login() {
           </div>
 
           {/* 비밀번호를 입력하지 않았을 때 나타나는 경고문 */}
-          {InputPWisNull && (
-            <div id="inputPw-null">비밀번호를 입력해주세요</div>
-          )}
+          {InputPWisNull && <WarningPWisNull />}
 
           {/* 로그인 완료 메시지 */}
-          {loginSuccess && (
-            <div id="login_success">로그인이 완료 되었습니다</div>
-          )}
+          {loginSuccess && <LoginSuccess />}
 
           {/* 로그인 유지 체크박스 */}
           <div id="keep-login">
@@ -176,7 +175,7 @@ function Login() {
           <SocialLogin />
         </div>
       </form>
-      <RegisteAndFindAcc />
+      <LoginMenu />
     </div>
   );
 }
