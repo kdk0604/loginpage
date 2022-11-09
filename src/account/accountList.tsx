@@ -1,6 +1,6 @@
 let userList: { id: string; pw: string } = {
-  id: "아이디",
-  pw: "비번",
+  id: "admin",
+  pw: "123",
 };
 
 export default userList;
