@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
-export const Main_App = styled.div`
+export const MainApp = styled.div`
   text-align: center;
 `;
