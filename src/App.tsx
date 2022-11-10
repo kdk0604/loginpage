@@ -1,15 +1,14 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import LoginPage from "./components/LoginPage";
+import LoginPage from "./components/loginPage";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Main_App } from "./styled/App_styled";
 
 function App() {
   return (
     <>
-      <div className="App">
+      <Main_App>
         <LoginPage />
-      </div>
+      </Main_App>
     </>
   );
 }
